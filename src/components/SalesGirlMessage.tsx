@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const message = "  Welcome to Pamperloft Art Store dear customer. Please click on the above categories to explore the products we offer.";
 

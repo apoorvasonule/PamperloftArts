@@ -1,17 +1,11 @@
-
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import StickyCartBar from '../components/StickyCartBar';
+import type { Product } from '../types/Product';
 
-type Product = {
-  id: number;
-  name: string;
-  price: string;
-  image: string;
-};
-
-const dummyProducts: { [key: string]: Product[] } = {
+// Note: price is a string here initially
+const dummyProducts: { [key: string]: { id: number; name: string; price: string; image: string }[] } = {
   keychains: [
     { id: 1, name: "Rainbow Charm", price: "₹99", image: "/products/rainbow.png" },
     { id: 2, name: "Cat Keychain", price: "₹89", image: "/products/cat.png" }
@@ -24,9 +18,21 @@ const dummyProducts: { [key: string]: Product[] } = {
   ]
 };
 
+const sanitizePrice = (priceString: string): number => {
+  // Remove ₹ and convert to number
+  return parseFloat(priceString.replace(/[^\d.]/g, '')) || 0;
+};
+
 const Category = () => {
   const { name } = useParams<{ name: string }>();
-  const products: Product[] = name && dummyProducts[name] ? dummyProducts[name] : [];
+
+  const rawProducts = name && dummyProducts[name] ? dummyProducts[name] : [];
+
+  // Convert prices from string to number
+  const products: Product[] = rawProducts.map(p => ({
+    ...p,
+    price: sanitizePrice(p.price)
+  }));
 
   return (
     <>

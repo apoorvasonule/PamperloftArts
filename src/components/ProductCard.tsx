@@ -1,11 +1,5 @@
 import { useCart } from '../context/CartContext';
-
-type Product = {
-  id: number;
-  name: string;
-  price: string;
-  image: string;
-};
+import type { Product } from '../types/Product';
 
 const ProductCard = ({ product }: { product: Product }) => {
   const { cartItems, addToCart, removeFromCart } = useCart();

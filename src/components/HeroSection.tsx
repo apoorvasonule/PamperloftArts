@@ -1,4 +1,4 @@
-import React from 'react';
+
 import mobileImage from '../assets/pixel-shop.png';
 import desktopImage from '../assets/pixel-shop-expanded.png';
 

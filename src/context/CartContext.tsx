@@ -1,13 +1,6 @@
 import  { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
-
-
-export type Product = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-};
+import type { Product } from '../types/Product';
 
 export type CartItem = Product & {
   quantity: number;
