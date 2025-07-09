@@ -53,7 +53,7 @@ Pincode: ${pincode}
 Phone: ${phone}
 Email: ${email}`;
 
-    const whatsappNumber = "9518759654"; // replace with your actual WhatsApp number
+    const whatsappNumber = "9096688572"; // replace with your actual WhatsApp number
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message
     )}`;
