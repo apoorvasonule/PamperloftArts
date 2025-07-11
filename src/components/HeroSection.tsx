@@ -1,5 +1,5 @@
 
-import mobileImage from '../assets/pixel-shop.png';
+import mobileImage from '../assets/pixel-shop-mobile.png';
 import desktopImage from '../assets/pixel-shop-expanded.png';
 
 const HeroSection = () => {

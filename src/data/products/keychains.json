@@ -1,0 +1,14 @@
+[
+  {
+    "id": "keychains-1",
+    "name": "Rainbow Charm",
+    "price": "₹99",
+    "image": "/products/rainbow.png"
+  },
+  {
+    "id": "keychains-2",
+    "name": "Cat Keychain",
+    "price": "₹89",
+    "image": "/products/cat.png"
+  }
+]

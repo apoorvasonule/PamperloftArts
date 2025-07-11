@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-const CartItems = () => {
+const CartItems = ({ goBack }: { goBack: () => void }) => {
   const { cartItems, addToCart, removeFromCart } = useCart();
   const navigate = useNavigate();
 
@@ -9,11 +9,28 @@ const CartItems = () => {
 
   return (
     <div className="min-h-screen p-6 pt-24 bg-[url('/billing-counter.png')] bg-cover bg-center">
-      <div className="bg-white/80 p-6 rounded-lg max-w-2xl mx-auto shadow-md">
+      <div className="relative bg-white/80 p-6 rounded-lg max-w-2xl mx-auto shadow-md">
+        {/* Close button */}
+        <button
+          onClick={goBack}
+          aria-label="Close cart"
+          className="
+        absolute top-3 right-3
+        flex items-center justify-center
+        w-8 h-8 sm:w-9 sm:h-9
+        bg-pink-300 border-2 border-pink-700 rounded
+        text-pink-900 font-pixel text-base
+        hover:bg-pink-400 active:translate-y-px transition
+      "
+        >
+          ✖
+        </button>
         <h2 className="text-2xl font-pixel text-pink-700 mb-4">Your Cart</h2>
 
         {items.length === 0 ? (
-          <p className="text-pink-900 font-pixel text-sm">Your cart is empty.</p>
+          <p className="text-pink-900 font-pixel text-sm">
+            Your cart is empty.
+          </p>
         ) : (
           <ul className="space-y-4">
             {items.map((item) => (
@@ -22,7 +39,9 @@ const CartItems = () => {
                 className="flex justify-between items-center bg-pink-100 p-4 rounded-lg"
               >
                 <div>
-                  <h3 className="text-pink-800 font-pixel text-base">{item.name}</h3>
+                  <h3 className="text-pink-800 font-pixel text-base">
+                    {item.name}
+                  </h3>
                   <p className="text-sm text-pink-700">₹{item.price}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -49,7 +68,7 @@ const CartItems = () => {
           <div className="mt-6 flex justify-center">
             <button
               className="bg-pink-600 text-white font-pixel px-6 py-3 rounded-lg hover:bg-pink-700 transition animate-bounce-slow"
-              onClick={() => navigate('/checkout')}
+              onClick={() => navigate("/checkout")}
             >
               Buy Now
             </button>

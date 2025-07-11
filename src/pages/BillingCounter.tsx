@@ -1,6 +1,7 @@
 import  { useState } from "react";
 import Navbar from "../components/Navbar";
 import billingCounterImg from "../assets/billing-counter.png";
+import billingCounterMobileImg from "../assets/billing-counter-mobile.png";
 import CartItems from "../components/CartItems"; // Make sure this path is correct
 import { useNavigate } from "react-router-dom";
 
@@ -13,10 +14,17 @@ const navigate = useNavigate();
       <Navbar />
       <section className="relative min-h-screen bg-[#fef6f9] overflow-hidden">
         {/* Background Image */}
-        <img
+          <img
           src={billingCounterImg}
-          alt="Billing Counter"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          alt="Billing Counter Desktop"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
+        />
+
+        {/* Background Image for Mobile */}
+        <img
+          src={billingCounterMobileImg}
+          alt="Billing Counter Mobile"
+          className="block md:hidden absolute inset-0 w-full h-full object-cover z-0"
         />
 
         {/* Content Over Background */}
@@ -40,7 +48,7 @@ const navigate = useNavigate();
               </div>
             </div>
           ) : (
-            <CartItems />
+             <CartItems goBack={() => setShowCart(false)} />
           )}
         </div>
       </section>

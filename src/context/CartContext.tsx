@@ -1,4 +1,4 @@
-import  { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { Product } from '../types/Product';
 
@@ -7,15 +7,15 @@ export type CartItem = Product & {
 };
 
 type CartContextType = {
-  cartItems: Record<number, CartItem>;
+  cartItems: Record<string, CartItem>;
   addToCart: (product: Product) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: string) => void;
 };
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [cartItems, setCartItems] = useState<Record<number, CartItem>>({});
+  const [cartItems, setCartItems] = useState<Record<string, CartItem>>({});
 
   const addToCart = (product: Product) => {
     setCartItems(prev => {
@@ -28,7 +28,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCartItems(prev => {
       const existing = prev[id];
       if (!existing) return prev;

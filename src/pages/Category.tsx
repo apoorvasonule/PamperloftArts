@@ -1,42 +1,43 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import StickyCartBar from '../components/StickyCartBar';
 import type { Product } from '../types/Product';
-
-// Note: price is a string here initially
-const dummyProducts: { [key: string]: { id: number; name: string; price: string; image: string }[] } = {
-  keychains: [
-    { id: 1, name: "Rainbow Charm", price: "₹99", image: "/products/rainbow.png" },
-    { id: 2, name: "Cat Keychain", price: "₹89", image: "/products/cat.png" }
-  ],
-  kundan: [
-    { id: 1, name: "Peacock Mandala", price: "₹199", image: "/products/peacock.png" }
-  ],
-  stickynotes: [
-    { id: 1, name: "Frog Memo Pad", price: "₹49", image: "/products/frogpad.png" }
-  ]
-};
+import CategoryTabs from '../components/CategoryTabs'; // 👈
 
 const sanitizePrice = (priceString: string): number => {
-  // Remove ₹ and convert to number
   return parseFloat(priceString.replace(/[^\d.]/g, '')) || 0;
 };
 
 const Category = () => {
   const { name } = useParams<{ name: string }>();
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const rawProducts = name && dummyProducts[name] ? dummyProducts[name] : [];
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await import(`../data/products/${name}.json`);
+        const cleanedProducts = data.default.map((p: any) => ({
+          ...p,
+          price: sanitizePrice(p.price),
+        }));
+        setProducts(cleanedProducts);
+      } catch (error) {
+        console.error("Failed to load products:", error);
+        setProducts([]);
+      }
+    };
 
-  // Convert prices from string to number
-  const products: Product[] = rawProducts.map(p => ({
-    ...p,
-    price: sanitizePrice(p.price)
-  }));
+    if (name) {
+      loadProducts();
+    }
+  }, [name]);
 
   return (
     <>
       <Navbar />
+      <CategoryTabs /> 
       <section className="bg-[#fff0f5] min-h-screen p-4">
         <h1 className="text-center font-pixel text-2xl text-pink-700 mb-6 capitalize">
           {name?.replace('-', ' ') || 'Category'}

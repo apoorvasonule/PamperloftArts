@@ -3,6 +3,7 @@ import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import type { CartItem } from "../context/CartContext"; // Import type if declared here
+
 // Import type if declared here
 
 const Checkout = () => {
@@ -178,7 +179,15 @@ Email: ${email}`;
               />
             </div>
 
-            <div className="text-center mt-6">
+            <div className="text-center mt-6 space-x-4">
+              <button
+                type="button"
+                onClick={() => navigate("/shop")} // or "/" or "/products" etc.
+                className="bg-pink-300 text-pink-900 font-pixel px-6 py-3 rounded-lg hover:bg-pink-400 transition"
+              >
+                Add More Items
+              </button>
+
               <button
                 type="submit"
                 className="bg-pink-600 text-white font-pixel px-6 py-3 rounded-lg hover:bg-pink-700 transition animate-bounce-slow"
