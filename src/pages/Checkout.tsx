@@ -96,7 +96,7 @@ Email: ${email}`;
                 </li>
               ))}
               <li className="text-right text-lg text-pink-800 font-pixel mt-4">
-                Total Amount: ₹{totalAmount}
+                Total Amount: Rs.{totalAmount}
               </li>
             </ul>
           ) : (
@@ -179,10 +179,10 @@ Email: ${email}`;
               />
             </div>
 
-            <div className="text-center mt-6 space-x-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center mt-6 gap-4">
               <button
                 type="button"
-                onClick={() => navigate("/shop")} // or "/" or "/products" etc.
+                onClick={() => navigate("/shop")}
                 className="bg-pink-300 text-pink-900 font-pixel px-6 py-3 rounded-lg hover:bg-pink-400 transition"
               >
                 Add More Items
@@ -190,7 +190,7 @@ Email: ${email}`;
 
               <button
                 type="submit"
-                className="bg-pink-600 text-white font-pixel px-6 py-3 rounded-lg hover:bg-pink-700 transition animate-bounce-slow"
+                className="bg-pink-600 text-white font-pixel px-6 py-3 rounded-lg hover:bg-pink-700 transition"
               >
                 Confirm Purchase
               </button>

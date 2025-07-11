@@ -21,6 +21,7 @@ const CategoryTabs = () => {
               key={path}
               onClick={() => navigate(path)}
               className={`font-pixel px-4 py-2 rounded-md transition
+                text-xs sm:text-sm lg:text-base
                 ${
                   isActive
                     ? 'bg-pink-600 text-white hover:bg-pink-700'
